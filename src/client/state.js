@@ -1,3 +1,5 @@
+import { updateLeaderboard } from './leaderboard'
+
 const RENDER_DELAY = 10
 
 /* 
@@ -35,7 +37,7 @@ export const processGameUpdate = (update) => {
 	}
 	gameUpdates.push(update)
 
-	// updateLeaderboard()
+	updateLeaderboard(update.leaderboard)
 
 	// Keep only one update before the base update
 	// by deleting the old ones

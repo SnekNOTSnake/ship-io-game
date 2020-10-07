@@ -37,6 +37,22 @@ const renderPlayer = (me, player) => {
 		PLAYER_RADIUS * 2,
 	)
 	context.restore()
+
+	// Draw Healthbar
+	context.fillStyle = '#fff'
+	context.fillRect(
+		canvasX - PLAYER_RADIUS,
+		canvasY - PLAYER_RADIUS - 20,
+		PLAYER_RADIUS * 2,
+		2,
+	)
+	context.fillStyle = '#ff0000'
+	context.fillRect(
+		canvasX - PLAYER_RADIUS + PLAYER_RADIUS * 2 * player.hp,
+		canvasY - PLAYER_RADIUS - 20,
+		PLAYER_RADIUS * 2,
+		2,
+	)
 }
 
 // Render root

@@ -3,6 +3,7 @@ import { downloadAssets } from './assets'
 import { startRendering } from './render'
 import { startCapturingInput } from './input'
 import { initState } from './state'
+import { setLeaderboardVisibility } from './leaderboard'
 
 import './styles/main.css'
 
@@ -18,6 +19,7 @@ Promise.all([connect(), downloadAssets()])
 		// On play button click
 		playButton.addEventListener('click', () => {
 			playMenu.classList.add('hidden')
+			setLeaderboardVisibility(true)
 			play(input.value)
 			initState()
 			startRendering()
