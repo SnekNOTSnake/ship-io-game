@@ -40,7 +40,7 @@ describe('Game', () => {
 			expect.objectContaining({
 				time: expect.any(Number),
 				me: expect.any(Object),
-				nearbyPlayers: expect.any(Array),
+				others: expect.any(Array),
 				leaderboard: expect.any(Array),
 			}),
 		)
