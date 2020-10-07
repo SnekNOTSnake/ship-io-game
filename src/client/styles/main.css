@@ -1,0 +1,39 @@
+* {
+	box-sizing: border-box;
+}
+body {
+	font-family: roboto, Arial, Helvetica, sans-serif;
+	color: rgba(0, 0, 0, 0.87);
+	margin: 0;
+}
+
+.hidden {
+	display: none;
+}
+
+.gameCanvas {
+	display: block;
+}
+
+.leaderboard {
+	z-index: 1;
+	position: fixed;
+	top: 50px;
+	right: 50px;
+}
+
+.playMenu {
+	z-index: 2;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.disconnectModal {
+	z-index: 3;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}

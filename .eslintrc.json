@@ -1,0 +1,20 @@
+{
+	"env": {
+		"es6": true,
+		"node": true,
+		"browser": true,
+		"jest/globals": true
+	},
+	"plugins": ["jest", "prettier"],
+	"extends": ["standard", "prettier"],
+	"rules": {
+		"no-console": "off",
+		"no-useless-return": "off",
+		"prettier/prettier": "warn",
+		"jest/no-disabled-tests": "warn",
+		"jest/no-focused-tests": "error",
+		"jest/no-identical-title": "error",
+		"jest/prefer-to-have-length": "warn",
+		"jest/valid-expect": "error"
+	}
+}
