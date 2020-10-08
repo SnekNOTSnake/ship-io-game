@@ -1,7 +1,12 @@
 import { debounce } from 'throttle-debounce'
 import { getCurrentState } from './state'
 import { getAsset } from './assets'
-import { ARENA_SIZE, PLAYER_RADIUS, BULLET_RADIUS } from 'Constants'
+import {
+	ARENA_SIZE,
+	PLAYER_RADIUS,
+	BULLET_RADIUS,
+	PLAYER_MAX_HP,
+} from 'Constants'
 
 const setCanvasDimension = () => {
 	// On small screens (e.g. phones), we want to "zoom out"
@@ -48,9 +53,10 @@ const renderPlayer = (me, player) => {
 	)
 	context.fillStyle = '#ff0000'
 	context.fillRect(
-		canvasX - PLAYER_RADIUS + PLAYER_RADIUS * 2 * player.hp,
+		// eslint-disable-next-line prettier/prettier
+		canvasX - PLAYER_RADIUS + PLAYER_RADIUS * 2 * (player.hp / PLAYER_MAX_HP),
 		canvasY - PLAYER_RADIUS - 20,
-		PLAYER_RADIUS * 2,
+		(PLAYER_RADIUS * 2 * (PLAYER_MAX_HP - player.hp)) / PLAYER_MAX_HP,
 		2,
 	)
 }
@@ -98,6 +104,9 @@ let renderInterval = null
 
 export const startRendering = () => {
 	clearInterval(renderInterval)
-	console.log('start rendering')
 	renderInterval = setInterval(render, 1000 / 60)
+}
+
+export const stopRendering = () => {
+	clearInterval(renderInterval)
 }

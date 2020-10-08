@@ -1,4 +1,5 @@
 const { ARENA_SIZE, MSG_TYPES } = require('../shared/constants')
+const applyCollisions = require('./collisions')
 const Player = require('./player')
 
 class Game {
@@ -47,6 +48,25 @@ class Game {
 		Object.keys(this.players).forEach((objectId) => {
 			const newBullet = this.players[objectId].update(time)
 			if (newBullet) this.bullets.push(newBullet)
+		})
+
+		// Apply collision
+		// Destroy bullet on player hit, give the parent player score for hitting
+		const hitBullets = applyCollisions(
+			Object.values(this.players),
+			this.bullets,
+		)
+		hitBullets.forEach((bullet) => this.players[bullet.parentID].onHitEnemy())
+		this.bullets = this.bullets.filter((bullet) => !hitBullets.includes(bullet))
+
+		// Check if any player is dead
+		Object.values(this.players).forEach((pl) => {
+			const player = this.players[pl.id]
+			const socket = this.sockets[pl.id]
+			if (player.hp <= 0) {
+				socket.emit(MSG_TYPES.GAME_OVER)
+				this.removePlayer(socket)
+			}
 		})
 
 		// Send the update to every players, half often

@@ -19,9 +19,10 @@ const connectedPromise = new Promise((resolve, reject) => {
 	})
 })
 
-export const connect = () => {
+export const connect = (onGameOver) => {
 	connectedPromise.then(() => {
 		socket.on(MSG_TYPES.GAME_UPDATE, processGameUpdate)
+		socket.on(MSG_TYPES.GAME_OVER, onGameOver)
 		socket.on('disconnect', () => {
 			console.log('Disconnected from server')
 			disconnectModal.classList.remove('hidden')

@@ -6,6 +6,8 @@ const {
 	SCORE_PER_SECOND,
 	ARENA_SIZE,
 	FIRE_COOLDOWN,
+	HIT_SCORE,
+	BULLET_DAMAGE,
 } = require('../shared/constants')
 
 class Player extends ObjectClass {
@@ -37,6 +39,16 @@ class Player extends ObjectClass {
 		}
 
 		return null
+	}
+
+	// On Hit enemy, update score
+	onHitEnemy() {
+		this.score += HIT_SCORE
+	}
+
+	// On collide with bullet, take hit damage
+	takeDamage() {
+		this.hp -= BULLET_DAMAGE
 	}
 
 	serializeForUpdate() {
