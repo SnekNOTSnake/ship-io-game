@@ -9,7 +9,8 @@ import './styles/main.css'
 
 const playMenu = document.querySelector('.playMenu')
 const input = document.querySelector('.playMenu input')
-const playButton = document.querySelector('.playMenu button')
+const form = document.querySelector('.playMenu form')
+const h2 = form.querySelector('h2')
 
 const onGameOver = () => {
 	playMenu.classList.remove('hidden')
@@ -17,6 +18,7 @@ const onGameOver = () => {
 	setLeaderboardVisibility(false)
 	stopCapturingInput()
 	stopRendering()
+	h2.innerText = 'Game Over'
 }
 
 Promise.all([connect(onGameOver), downloadAssets()])
@@ -25,7 +27,8 @@ Promise.all([connect(onGameOver), downloadAssets()])
 		input.focus()
 
 		// On play button click
-		playButton.addEventListener('click', () => {
+		form.addEventListener('submit', (e) => {
+			e.preventDefault()
 			playMenu.classList.add('hidden')
 			setLeaderboardVisibility(true)
 			play(input.value)

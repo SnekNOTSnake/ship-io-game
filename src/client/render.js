@@ -79,13 +79,12 @@ const render = () => {
 	if (!me) return
 
 	// Draw Background
-	context.fillStyle = '#222'
+	context.fillStyle = '#333'
 	context.fillRect(0, 0, canvas.width, canvas.height)
 
 	// Draw Boundaries
-	context.strokeStyle = '#fff'
-	context.lineWidth = 2
-	context.strokeRect(
+	context.fillStyle = '#222'
+	context.fillRect(
 		canvas.width / 2 - me.x,
 		canvas.height / 2 - me.y,
 		ARENA_SIZE,

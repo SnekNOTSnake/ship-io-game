@@ -5,10 +5,45 @@ body {
 	font-family: roboto, Arial, Helvetica, sans-serif;
 	color: #fff;
 	margin: 0;
+	background-color: #333;
 }
 
-.hidden {
-	display: none;
+input {
+	padding: 8px 16px;
+	background-color: #fff;
+	border: none;
+	border-radius: 4px;
+	outline: none;
+	font-size: 1em;
+	color: rgba(0, 0, 0, 0.87);
+}
+
+button {
+	padding: 8px 16px;
+	background-color: #176eb3;
+	border: none;
+	border-radius: 4px;
+	outline: none;
+	font-size: 1em;
+	color: #fff;
+	cursor: pointer;
+}
+
+a {
+	color: orange;
+	text-decoration: none;
+}
+a:hover {
+	border-bottom: 1px solid orange;
+}
+
+table {
+	border-collapse: collapse;
+	width: 100%;
+}
+table tr td,
+table tr th {
+	padding: 4px 8px;
 }
 
 .gameCanvas {
@@ -20,9 +55,9 @@ body {
 	position: fixed;
 	top: 50px;
 	right: 50px;
-}
-.leaderboard table {
-	min-width: 200px;
+	background-color: rgba(0, 0, 0, 0.25);
+	border-radius: 4px;
+	padding: 16px;
 	text-align: center;
 }
 
@@ -32,6 +67,18 @@ body {
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
+	display: flex;
+	max-width: 350px;
+	background-color: #111;
+	padding: 40px 24px;
+	border-radius: 4px;
+	text-align: center;
+}
+.playMenu h2 {
+	margin: 0 0 16px;
+}
+.playMenu p {
+	margin-bottom: 32px;
 }
 
 .disconnectModal {
@@ -40,4 +87,13 @@ body {
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
+	max-width: 350px;
+	background-color: #111;
+	padding: 40px 24px;
+	border-radius: 4px;
+	text-align: center;
+}
+
+.hidden {
+	display: none;
 }
