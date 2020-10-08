@@ -40,7 +40,11 @@
 	"scripts": {
 		"build": "webpack --config webpack.production.js",
 		"develop": "NODE_ENV=development nodemon src/server/server.js",
-		"start": "NODE_ENV=production nodemon src/server/server.js",
+		"start": "node src/server/server.js",
 		"test": "jest"
+	},
+	"engines": {
+		"node": "12.x",
+		"yarn": "1.x"
 	}
 }
