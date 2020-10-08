@@ -33,9 +33,20 @@ class Game {
 		const time = (now - this.lastUpdatedTime) / 1000
 		this.lastUpdatedTime = now
 
+		// Update each and every bullets
+		// this section is talking about destroying bullet on leaving arena
+		const bulletsToBeDestroyed = []
+		this.bullets.forEach((bullet) => {
+			if (bullet.update(time)) bulletsToBeDestroyed.push(bullet)
+		})
+		this.bullets = this.bullets.filter(
+			(bullet) => !bulletsToBeDestroyed.includes(bullet),
+		)
+
 		// Update each and every players
 		Object.keys(this.players).forEach((objectId) => {
-			this.players[objectId].update(time)
+			const newBullet = this.players[objectId].update(time)
+			if (newBullet) this.bullets.push(newBullet)
 		})
 
 		// Send the update to every players, half often
@@ -68,12 +79,16 @@ class Game {
 		const nearbyPlayers = Object.values(this.players).filter((pl) => {
 			return pl !== player && player.distanceTo(pl) < ARENA_SIZE / 2
 		})
+		const nearbyBullets = this.bullets.filter((bullet) => {
+			return bullet.distanceTo(player) < ARENA_SIZE / 2
+		})
 
 		return {
 			time: this.lastUpdatedTime,
 			// { id, x, y, hp, dir }
 			me: player.serializeForUpdate(),
 			others: nearbyPlayers.map((pl) => pl.serializeForUpdate()),
+			bullets: nearbyBullets.map((bullet) => bullet.serializeForUpdate()),
 			leaderboard,
 		}
 	}

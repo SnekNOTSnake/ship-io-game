@@ -80,7 +80,7 @@ const interpolateObject = (object1, object2, ratio) => {
 
 	const interpolated = {}
 	Object.keys(object1).forEach((key) => {
-		if (key === 'direction') {
+		if (key === 'dir') {
 			interpolated[key] = interpolateDirection(
 				object1[key],
 				object2[key],
@@ -143,6 +143,7 @@ export const getCurrentState = () => {
 		return {
 			me: interpolateObject(baseUpdate.me, next.me, ratio),
 			others: interpolateArray(baseUpdate.others, next.others, ratio),
+			bullets: interpolateArray(baseUpdate.bullets, next.bullets, ratio),
 		}
 	}
 }

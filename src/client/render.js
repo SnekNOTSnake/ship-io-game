@@ -1,7 +1,7 @@
 import { debounce } from 'throttle-debounce'
 import { getCurrentState } from './state'
 import { getAsset } from './assets'
-import { ARENA_SIZE, PLAYER_RADIUS } from 'Constants'
+import { ARENA_SIZE, PLAYER_RADIUS, BULLET_RADIUS } from 'Constants'
 
 const setCanvasDimension = () => {
 	// On small screens (e.g. phones), we want to "zoom out"
@@ -55,9 +55,21 @@ const renderPlayer = (me, player) => {
 	)
 }
 
+// Render bullet
+const renderBullet = (me, bullet) => {
+	const { x, y } = bullet
+	context.drawImage(
+		getAsset('bullet.svg'),
+		canvas.width / 2 + x - me.x - BULLET_RADIUS,
+		canvas.height / 2 + y - me.y - BULLET_RADIUS,
+		BULLET_RADIUS * 2,
+		BULLET_RADIUS * 2,
+	)
+}
+
 // Render root
 const render = () => {
-	const { me, others } = getCurrentState()
+	const { me, others, bullets } = getCurrentState()
 	if (!me) return
 
 	// Draw Background
@@ -77,6 +89,9 @@ const render = () => {
 	// Draw all Players
 	renderPlayer(me, me)
 	others.forEach((player) => renderPlayer(me, player))
+
+	// Draw all bullets
+	bullets.forEach((bullet) => renderBullet(me, bullet))
 }
 
 let renderInterval = null

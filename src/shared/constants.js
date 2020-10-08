@@ -5,6 +5,10 @@ module.exports = {
 
 	SCORE_PER_SECOND: 1,
 
+	FIRE_COOLDOWN: 0.2,
+	BULLET_SPEED: 1200,
+	BULLET_RADIUS: 2,
+
 	ARENA_SIZE: 2000,
 	MSG_TYPES: {
 		JOIN_GAME: 'join_game',
