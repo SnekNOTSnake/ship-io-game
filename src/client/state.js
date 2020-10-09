@@ -1,6 +1,6 @@
 import { updateLeaderboard } from './leaderboard'
 
-const RENDER_DELAY = 10
+const RENDER_DELAY = 100
 
 /* 
  * Game update value examples

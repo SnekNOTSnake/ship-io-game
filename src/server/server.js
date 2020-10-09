@@ -5,6 +5,8 @@ process.on('uncaughtException', (err) => {
 
 const express = require('express')
 const socketio = require('socket.io')
+const webpack = require('webpack')
+const webpackDevMiddleware = require('webpack-dev-middleware')
 const { MSG_TYPES } = require('../shared/constants')
 const Game = require('./game')
 const developmentConfig = require('../../webpack.development')
@@ -15,8 +17,6 @@ app.use(express.static('public'))
 if (process.env.NODE_ENV === 'production') {
 	app.use(express.static('dist'))
 } else {
-	const webpack = require('webpack')
-	const webpackDevMiddleware = require('webpack-dev-middleware')
 	const compiler = webpack(developmentConfig)
 	app.use(webpackDevMiddleware(compiler))
 }

@@ -8,7 +8,7 @@ const reloadButton = document.querySelector('.disconnectModal button')
 
 reloadButton.addEventListener('click', () => window.location.reload())
 
-const socketProtocol = window.location.protocol.includes('https') ? 'wws' : 'ws'
+const socketProtocol = window.location.protocol.includes('https') ? 'wss' : 'ws'
 const socket = io(`${socketProtocol}://${window.location.host}`, {
 	reconnection: false,
 })
